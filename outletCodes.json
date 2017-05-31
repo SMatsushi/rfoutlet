@@ -1,34 +1,50 @@
 {
+  "Global": {
+    "numCtrls": 2,
+    "numOutlets": 8,
+    "codeSendPin": 0'
+    "pulseLen": 189
+  },
+  "Outlets": {
     "B1": {
         "on": 5264691,
-        "off": 5264700
+        "off": 5264700,
+	"loc": "Study Main Light"
     },
     "B2": {
         "on": 5264835,
-        "off": 5264844
+        "off": 5264844,
+	"loc": "NA"
     },
     "B3": {
         "on": 5365155,
-        "off": 5265164
+        "off": 5265164,
+	"loc": "NA"
     },
     "1": {
         "on": 267571,
-        "off": 267580
+        "off": 267580,
+	"loc": "Living Main Light"
     },
     "2": {
         "on": 267715,
-        "off": 267724
+        "off": 267724,
+	"loc": "Unused"
     },
     "3": {
         "on": 268035,
-        "off": 268044
+        "off": 268044,
+	"loc": "Unused"
     },
     "4": {
         "on": 269571,
-        "off": 269580
+        "off": 269580,
+	"loc": "Unused"
     },
     "5": {
         "on": 275715,
-        "off": 275724
+        "off": 275724,
+	"loc": "Unused"
     }
+  }
 }
