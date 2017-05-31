@@ -2,8 +2,16 @@
 header('Content-Type: application/json');
 header('Cache-Control: no-cache, must-revalidate');
 
+// Read JSON database for outlet coding
+$outletCodeFile='./outletCodes.json';
+if (!file_exists($outletCodeFile)) {
+    error_log("$outletCodeFile is missing, please set it up.", 0);
+    die(json_encode(array('success' => false)));
+} else {
+    $codes = json_decode(file_get_contents($outletCodeFile), true);
+}
 // Edit these codes for each outlet
-$codes = array(
+$xcodes = array(
     "B1" => array(
         "on" => 5264691,
         "off" => 5264700
