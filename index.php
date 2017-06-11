@@ -36,8 +36,9 @@
   <div class="container">
 
 <?php
+  
   foreach ($codes['Outlets'] as $light => $value) {
-     print '<label>'. $light . ': ' . $value['loc'] . '</label>';
+     print '<label>'. $light . '</label>' . ': ' . $value['loc'];
      print '<div class="btn-group btn-group-justified" role="group" aria-label="...">';
      print '  <div class="btn-group" role="group">';
      print '      <button type="button" data-outletId="' . $light . '" data-outletStatus="on" class="btn btn-default toggleOutlet">On</button>';
@@ -62,9 +63,14 @@
 
 </br>
   <div class="container">
-<?php
+   <div class="btn-group btn-group-justified" role="group" aria-label="...">
+    <label> current time: </label>
 
-  print '<form method="post" action="timer.pl">';
+<?php
+     print date("Y M j \(D\) G:i:s T");
+     print ' </div>';
+
+  print '<form method="post" action="timer.php">';
 
   print '<input type="radio" name="timer" value="TimerOff" checked>';
   print '<label>'. 'TimerOff' . '</label>';
