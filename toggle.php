@@ -30,7 +30,8 @@ if (!file_exists($codeSendPath)) {
 // print "<pre>";
 // print_r($codes);
 error_log($outletCodeFile);
-error_log(var_dump($codes));
+var_dump($codes);
+error_log(ob_get_clean()); // get vardump string
 // error_log(print_r($codes));
 // print "</pre>";
 
