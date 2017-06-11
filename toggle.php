@@ -29,9 +29,10 @@ if (!file_exists($codeSendPath)) {
 
 // print "<pre>";
 // print_r($codes);
-error_log($outletCodeFile);
-var_dump($codes);
-error_log(ob_get_clean()); // get vardump string
+// error_log($outletCodeFile);
+// var_dump($codes);
+// error_log(ob_get_clean()); // get vardump string
+
 // error_log(print_r($codes));
 // print "</pre>";
 
@@ -53,8 +54,8 @@ if ($outletLight == "6") {
         $codesToToggle = array_column($codes['Outlets'], $outletStatus);
     } else {
 	$codesToToggle = array();
-	foreach ($codes as $outletCodes['Outlets']) {
-	    array_push($codesToToggle, $outletCodes[$outletStatus]);
+	foreach ($codes['Outlets'] as $light) {
+	    array_push($codesToToggle, $light[$outletStatus]);
 	}
     }
 } else {
@@ -65,7 +66,7 @@ if ($outletLight == "6") {
 foreach ($codesToToggle as $codeSendCode) {
     shell_exec($codeSendPath . ' ' . $codeSendCode . ' -p ' . $codeSendPIN . ' -l ' . $codeSendPulseLength);
     error_log($outletLight . ' ' . $outletStatus . ': ' . $codeSendPath . ' ' . $codeSendCode . ' -p ' . $codeSendPIN . ' -l ' . $codeSendPulseLength);
-    sleep(1);
+    sleep(0.2);
 }
 
 die(json_encode(array('success' => true)));
