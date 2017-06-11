@@ -59,4 +59,31 @@ $codeSendPIN = (string) $codes['Global']['codeSendPin'];
 
 // Pulse length depends on the RF outlets you are using. Use RFSniffer to see what pulse length your device uses.
 $codeSendPulseLength = (string) $codes['Global']['pulseLen'];
+
+// Setting Subarray
+//   codesExist for the receiver (Outlet) exist. Removed 'NA'.
+//   codesUsed for the outlet is used. Removed 'NA' and 'Unused'.
+$outletsExists = array();
+$outletsUsed = array();
+foreach ($codes['Outlets'] as $light => $value) {
+    if ($value['loc'] <> 'NA') {
+	$outletsExists =  $outletsExists + array($light => $value);
+	if ($value['loc'] <> 'Unused') {
+	    $outletsUsed = $outletsUsed + array($light => $value);
+	}
+    }
+}
+print "<pre>";
+print '---- $codes["Outlets"] ----' . "\n";
+var_dump($codes['Outlets']);
+print '---- $outletsExists ----' . "\n";
+var_dump($outletsExists);
+print '---- $outletsUsed ----' . "\n";
+var_dump($outletsUsed);
+print "</pre>";
+//error_log(ob_get_clean()); // get vardump string
+
+// Specify code book to use.
+// $codeBook = $codes['Outlets'];
+$codeBook = $outletsExists;
 ?>

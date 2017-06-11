@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>RF Outlets</title>
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="Mirror/bootstrap.min.css">
   <style>
     body {
       padding-top: 70px
@@ -37,7 +37,8 @@
 
 <?php
   
-  foreach ($codes['Outlets'] as $light => $value) {
+  // foreach ($outletsExists as $light => $value) {  // code exists but not working correct yet.
+  foreach ($codeBook as $light => $value) {
      print '<label>'. $light . '</label>' . ': ' . $value['loc'];
      print '<div class="btn-group btn-group-justified" role="group" aria-label="...">';
      print '  <div class="btn-group" role="group">';
@@ -101,8 +102,8 @@
 
 
 </body>
-<script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="Mirror/jquery-2.2.0.min.js"></script>
+<script src="Mirror/bootstrap.min.js"></script>
 <script src="script.js"></script>
 
 </html>
