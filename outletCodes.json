@@ -2,7 +2,7 @@
   "Global": {
     "numCtrls": 2,
     "numOutlets": 8,
-    "codeSendPin": 0'
+    "codeSendPin": 0,
     "pulseLen": 189
   },
   "Outlets": {
