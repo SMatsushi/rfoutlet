@@ -59,6 +59,41 @@
       </div>
     </div>
   </div>
+
+</br>
+  <div class="container">
+<?php
+
+  print '<form method="post" action="timer.pl">';
+
+  print '<input type="radio" name="timer" value="TimerOff" checked>';
+  print '<label>'. 'TimerOff' . '</label>';
+  print '<div class="btn-group btn-group-justified" role="group">';
+  print '<pre></pre>';
+  print '</div>';
+
+  foreach ($timerSetup as $mode => $value) {
+     print '<input type="radio" name="timer" value="' . $mode . '"> ';
+     print '<label>'. $mode . '</label>';
+     // print '<div class="btn-group btn-group-justified" role="group" aria-label="...">';
+     print '<div class="btn-group btn-group-justified" role="group">';
+        print '<pre>';
+	foreach ($value as $time => $rule) {
+	  print $time . '[ ';
+	     foreach ($rule as $switch => $light) {
+	        print $switch . ':' . $light . ', ';
+             }
+	  print '], ';
+        }
+	print '</pre>';
+     print '</div>';
+  }
+  print '<p><input type="submit" value="Submit"></p>';
+  print '</form">';
+
+?>
+
+
 </body>
 <script src="//code.jquery.com/jquery-2.2.0.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>

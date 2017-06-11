@@ -16,6 +16,26 @@ if (!file_exists($outletCodeFile)) {
     }
 }
 
+// Read Timersetup database
+$timerSetupFile='./timerSetup.json';
+if (!file_exists($timerSetupFile)) {
+    error_log("$timerSetupFile is missing, please set it up.", 0);
+    die(json_encode(array('success' => false)));
+} else {
+    $timers = file_get_contents($timerSetupFile);
+    // To prevent error
+    $timers = str_replace('&quot;', '"', $timers);
+    $timerSetup = json_decode($timers, true);
+    // $codes = json_decode($timers);
+    if (!$timerSetup) {
+	error_log("Error in $timerSetupFile", 0);
+	die(json_encode(array('success' => false)));
+    }
+}
+
+// Path to the codesend binary (current directory is the default)
+$codeSendPath = './codesend';
+
 // Path to the codesend binary (current directory is the default)
 $codeSendPath = './codesend';
 

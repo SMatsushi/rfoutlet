@@ -1,5 +1,5 @@
 var toggleOutlet = function(buttonClicked) {
-    $.post('toggle.php', {
+    $.post('justToggle.php', {
             outletId: buttonClicked.attr('data-outletId'),
             outletStatus: buttonClicked.attr('data-outletStatus')
         },
