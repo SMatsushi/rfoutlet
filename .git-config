@@ -1,0 +1,21 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+	editor = vi
+[remote "origin"]
+	fetch = +refs/heads/*:refs/remotes/origin/*
+	url = git://github.com/timleland/rfoutlet.git
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
+[alias]
+	st=status
+	br=branch
+	ci=checkin
+	co=checkout
+	lola = log --graph --decorate --pretty=oneline --abbrev=commit --all
+[remote "upstream"]
+	url = https://github.com/SMatsushi/rfoutlet.git
+	fetch = +refs/heads/*:refs/remotes/upstream/*
