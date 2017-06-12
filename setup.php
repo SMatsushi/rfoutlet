@@ -1,4 +1,8 @@
 <?php
+// Done flag
+   $setupPhpDone = true;
+// Set Timezone
+   date_default_timezone_set('America/Los_Angeles');
 // Read JSON database for outlet coding
 $outletCodeFile='./outletCodes.json';
 if (!file_exists($outletCodeFile)) {

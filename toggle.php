@@ -1,8 +1,10 @@
 <?php
-header('Content-Type: application/json');
-header('Cache-Control: no-cache, must-revalidate');
+if (!isset($setupPhpDone)) { // avoid multiple inclusion
+    header('Content-Type: application/json');
+    header('Cache-Control: no-cache, must-revalidate');
 
-include 'setup.php'; // setup variables reading ./outletCodes.json
+    include 'setup.php'; // setup variables reading ./outletCodes.json
+}
 
 $outletLight = $_POST['outletId'];
 $outletStatus = $_POST['outletStatus'];
@@ -26,5 +28,8 @@ foreach ($codesToToggle as $codeSendCode) {
     sleep(0.2);
 }
 
-die(json_encode(array('success' => true)));
+if (!isset($timerDaemon)) {
+   // not called from timer Daemon maybe from CGI
+    die(json_encode(array('success' => true)));
+}
 ?>
