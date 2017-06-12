@@ -36,17 +36,17 @@ if (!file_exists($timerSetupFile)) {
 // Path to the codesend binary (current directory is the default)
 $codeSendPath = './codesend';
 
-// Path to the codesend binary (current directory is the default)
-$codeSendPath = './codesend';
-
 if (!file_exists($codeSendPath)) {
     error_log("$codeSendPath is missing, please edit the script", 0);
     die(json_encode(array('success' => false)));
 }
 
+// Path to onState file location
+$onStateDir = './OnState/';
+
 // print "<pre>";
 // print_r($codes);
-error_log($outletCodeFile);
+// error_log($outletCodeFile);
 //   var_dump($codes);
 //   error_log(ob_get_clean()); // get vardump string
 // error_log(print_r($codes));
@@ -73,17 +73,19 @@ foreach ($codes['Outlets'] as $light => $value) {
 	}
     }
 }
-print "<pre>";
-print '---- $codes["Outlets"] ----' . "\n";
-var_dump($codes['Outlets']);
-print '---- $outletsExists ----' . "\n";
-var_dump($outletsExists);
-print '---- $outletsUsed ----' . "\n";
-var_dump($outletsUsed);
-print "</pre>";
-//error_log(ob_get_clean()); // get vardump string
+// debug code
+if (0) {
+    print "<pre>";
+    print '---- $codes["Outlets"] ----' . "\n";
+    var_dump($codes['Outlets']);
+    print '---- $outletsExists ----' . "\n";
+    var_dump($outletsExists);
+    print '---- $outletsUsed ----' . "\n";
+    var_dump($outletsUsed);
+    print "</pre>";
+}
 
 // Specify code book to use.
 // $codeBook = $codes['Outlets'];
-$codeBook = $outletsExists;
+$codeBook = $outletsExists;  // now works.
 ?>

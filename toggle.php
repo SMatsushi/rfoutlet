@@ -7,15 +7,12 @@ include 'setup.php'; // setup variables reading ./outletCodes.json
 $outletLight = $_POST['outletId'];
 $outletStatus = $_POST['outletStatus'];
 
-if ($outletLight == "6") {
-    // 6 is all 5 outlets combined
-    if (function_exists('array_column')) {
-        // PHP >= 5.5
-        $codesToToggle = array_column($codeBook, $outletStatus);
-    } else {
-	$codesToToggle = array();
-	foreach ($codeBook as $light) {
-	    array_push($codesToToggle, $light[$outletStatus]);
+if ($outletLight == "All") {
+    // All is all outlets combined
+    $codesToToggle = array();
+    foreach ($codeBook as $light => $value) {
+	if ($light <> 'All') {
+	    array_push($codesToToggle, $value[$outletStatus]);
 	}
     }
 } else {
