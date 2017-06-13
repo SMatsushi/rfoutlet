@@ -1,13 +1,22 @@
 <?php
 // Done flag
    $setupPhpDone = true;
+
+function errorExit($str)
+{
+    error_log($str, 0);
+    print "<pre>";
+    print date("Y M j \(D\) G:i:s T\n");
+    print "$str\n";
+    print "</pre>";
+    die(json_encode(array('success' => false)));
+}
 // Set Timezone
    date_default_timezone_set('America/Los_Angeles');
 // Read JSON database for outlet coding
 $outletCodeFile='./outletCodes.json';
 if (!file_exists($outletCodeFile)) {
-    error_log("$outletCodeFile is missing, please set it up.", 0);
-    die(json_encode(array('success' => false)));
+    errorExit("$outletCodeFile is missing, please set it up.");
 } else {
     $rules = file_get_contents($outletCodeFile);
     // To prevent error
@@ -15,15 +24,14 @@ if (!file_exists($outletCodeFile)) {
     $codes = json_decode($rules, true);
     // $codes = json_decode($rules);
     if (!$codes) {
-	error_log("Error in $outletCodeFile", 0);
-	die(json_encode(array('success' => false)));
+	errorExit("Error in $outletCodeFile");
     }
 }
 
 // Read Timersetup database
 $timerSetupFile='./timerSetup.json';
 if (!file_exists($timerSetupFile)) {
-    error_log("$timerSetupFile is missing, please set it up.", 0);
+    errorExit("$timerSetupFile is missing, please set it up.");
     die(json_encode(array('success' => false)));
 } else {
     $timers = file_get_contents($timerSetupFile);
@@ -32,8 +40,7 @@ if (!file_exists($timerSetupFile)) {
     $timerSetup = json_decode($timers, true);
     // $codes = json_decode($timers);
     if (!$timerSetup) {
-	error_log("Error in $timerSetupFile", 0);
-	die(json_encode(array('success' => false)));
+	errorExit("Error in $timerSetupFile");
     }
 }
 
@@ -41,8 +48,7 @@ if (!file_exists($timerSetupFile)) {
 $codeSendPath = './codesend';
 
 if (!file_exists($codeSendPath)) {
-    error_log("$codeSendPath is missing, please edit the script", 0);
-    die(json_encode(array('success' => false)));
+    errorExit("$codeSendPath is missing, please edit the script");
 }
 
 // Path to onState file location
