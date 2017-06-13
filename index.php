@@ -95,6 +95,7 @@
 	print '</pre>';
      print '</div>';
   }
+  printf("<p><pre>\n Current mode in shuffle: %s\n</pre></p>", implode(" ", scandir($shuffleModeDir)));
   print '<p><input type="submit" value="Submit"></p>';
   print '</form">';
 

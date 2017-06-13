@@ -1,5 +1,8 @@
 {
   "TimerOff": {
+  	"Timer is off.": {
+	     "Do nothing": " Autonomously."
+	}
   },
   "Mode1": {
 	"6:00": {
@@ -101,5 +104,8 @@
 	}
   },
   "Shuffle": {
+  	"0:00": {
+	     "Shuffling": " mode randomly at this time."
+	}
   }
 }
