@@ -47,17 +47,19 @@
 	$onState = '';
         $offState = 'style="background-color:lightBlue;"';
     }
-    print '<label>'. $light . '</label>' . ': ' . $value['loc'];
-    print '<div class="btn-group btn-group-justified" role="group" aria-label="...">';
-    print '  <div class="btn-group" role="group">';
-    print '      <button type="button" data-outletId="' . $light .
-	'" data-outletStatus="on" class="btn btn-default toggleOutlet" ' . $onState . '>On</button>';
-    print '  </div>';
-    print ' <div class="btn-group" role="group">';
-    print '  <button type="button" data-outletId="' . $light .
-	'" data-outletStatus="off" class="btn btn-default toggleOutlet" ' . $offState . '>Off</button>';
-    print ' </div>';
-    print '</div>';
+    echo <<< EOM
+    <label> {$light} </label>: {$value['loc']}
+    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+      <div class="btn-group" role="group">
+        <button type="button" data-outletId="{$light}"
+	 data-outletStatus="on" class="btn btn-default toggleOutlet" {$onState}>On</button>
+      </div>
+      <div class="btn-group" role="group">
+        <button type="button" data-outletId="{$light}"
+	 data-outletStatus="off" class="btn btn-default toggleOutlet" {$offState}>Off</button>
+      </div>
+    </div>
+EOM;
   }
 ?>
 
@@ -67,24 +69,24 @@
     <label> current time: </label>
 
 <?php
-     print date("Y M j \(D\) G:i:s T");
-     print ' </div>';
+   print date("Y M j \(D\) G:i:s T");
+echo <<< EOM
+    </div>
 
-  print '<form method="post" action="timer.php"> ';
+    <form method="post" action="timer.php"> 
+EOM;
   foreach ($timerSetup as $mode => $value) {
     if (file_exists($onStateDir . $mode)) {
 	$status = 'checked';
     } else {
         $status = '';
     }
-    print '<input type="radio" name="timer" value="' . $mode . '" ' . $status . '> ';
-    print '<label>'. $mode . '</label>';
-    // if ($status == '') {
-    // 	print ' Unchecked';
-    // }
-    // print '<div class="btn-group btn-group-justified" role="group" aria-label="...">';
-    print '<div class="btn-group btn-group-justified" role="group">';
-        print '<pre>';
+    echo <<< EOM
+      <input type="radio" name="timer" value="{$mode}" {$status}> 
+        <label> {$mode} </label>
+        <div class="btn-group btn-group-justified" role="group">
+           <pre>
+EOM;
 	foreach ($value as $time => $rule) {
 	  print $time . '[ ';
 	     foreach ($rule as $switch => $light) {
@@ -92,12 +94,18 @@
              }
 	  print '], ';
         }
-	print '</pre>';
-     print '</div>';
+     echo <<< EOM
+	  </pre>
+       </div>
+EOM;
   }
-  printf("<p><pre>\n Current mode in shuffle: %s\n</pre></p>", implode(" ", scandir($shuffleModeDir)));
-  print '<p><input type="submit" value="Submit"></p>';
-  print '</form">';
+//  printf("<p><pre>\n Current mode in shuffle: %s\n</pre></p>", implode(" ", scandir($shuffleModeDir)));
+         $modes = implode(" ", scandir($shuffleModeDir));
+echo <<< EOM
+       <p> <pre>Current mode in shuffle: { $modes }</pre> </p> 
+       <p><input type="submit" value="Submit"></p>
+    </form">
+EOM;
 
 ?>
 
