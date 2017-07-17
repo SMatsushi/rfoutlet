@@ -101,7 +101,7 @@
 
 ?>
 
-
+<img src="CAM0.jpg">
 </body>
 <script src="Mirror/jquery-2.2.0.min.js"></script>
 <script src="Mirror/bootstrap.min.js"></script>
