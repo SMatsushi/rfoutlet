@@ -46,7 +46,7 @@
     }
 
     // controling swtich
-    foreach ($timerSetup as $mode => $value) {
+    foreach ($timerSetup as $mode => $values) {
         if (file_exists($onStateDir . 'Shuffle')) {
 	    if(!file_exists($shuffleModeDir . $mode)) {
 	        // specially treated for shuffle mode		    
@@ -60,13 +60,13 @@
 	if ($mode == 'TimerOff') {
 	    break;
 	}
-	foreach ($value as $time => $rule) {
+	foreach ($values as $time => $rules) { // now rules is a list of rule
 	    $utsTime = strtotime($time);
 	    if ($argv[1]) {
 	        print '$utsTime:';
 		var_dump($utsTime);
-	        print "   \$rule: ";
-		var_dump($rule);
+	        print "   \$rulse: ";
+		var_dump($rules);
 	    }
 	    if ( (($utsNow - $matchRange) <= $utsTime) && 
 	          ($utsTime <= ($utsNow + $matchRange)) ) {
@@ -74,7 +74,7 @@
 		if ($argv[1]) {
 		    print " --- > Matched\n";
 		}
-	        foreach ($rule as $switch => $light) {
+	        foreach ($rules as $light => $switch) {
 		    print "Triggering : " . $light . ': ' . $switch . ', ';
 		    $_POST['outletId'] = $light;
 		    $_POST['outletStatus'] = $switch;
