@@ -75,6 +75,18 @@ echo <<< EOM
 
     <form method="post" action="timer.php"> 
 EOM;
+  if (file_exists($onStateDir . 'Once')) {
+	$once = 'checked';
+    } else {
+        $redun = 'checked';
+    }
+    echo <<< EOM
+    Timer Mode:
+    <input type="radio" name="timer_mode" value="once" {$once}> <label> once </label>
+    <input type="radio" name="timer_mode" value="redun" {$redun}> <label> redun </label>
+    <p>
+EOM;
+
   foreach ($timerSetup as $mode => $value) {
     if (file_exists($onStateDir . $mode)) {
 	$status = 'checked';
